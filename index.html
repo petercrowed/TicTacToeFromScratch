@@ -1,0 +1,34 @@
+<html  ng-app="myApp">
+
+<head>
+    <script src="node_modules/angular/angular.js"></script>
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script src="node_modules/underscore/underscore.js"></script>
+    <script src="controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body ng-controller="controller">
+    <h1>Tic Tac Toe!</h1>
+
+    <div class="container">
+        <div class="well">
+            <div><button class="btn-primary btn-lg" ng-repeat="cell in board[0]" ng-disabled="isTaken(cell);" ng-click="move(cell);">{{ cell.value }}</button></div>
+            <div><button class="btn-primary btn-lg" ng-repeat="cell in board[1]" ng-disabled="isTaken(cell);" ng-click="move(cell);">{{ cell.value }}</button></div>
+            <div><button class="btn-primary btn-lg" ng-repeat="cell in board[2]" ng-disabled="isTaken(cell);" ng-click="move(cell);">{{ cell.value }}</button></div>
+            <br/>
+            <p>
+                <span ng-hide="winner || cat">Current Player: {{ currentPlayer }}</span>
+                <span ng-show="winner">Player {{ currentPlayer }} won!</span>
+                <span ng-show="cat">Cat</span>
+            </p>
+        </div>
+    </div>
+
+    <button ng-click="reset();" class="btn btn-primary btn-large">New Game</button>
+</body>
+
+</html>
