@@ -22,13 +22,27 @@
             <br/>
             <p>
                 <span ng-hide="winner || cat">Current Player: {{ currentPlayer }}</span>
-                <span ng-show="winner">Player {{ currentPlayer }} won!</span>
+                <span  ng-disabled="endOfGame" ng-show="winner">Player {{ currentPlayer }} won!</span>
                 <span ng-show="cat">Cat</span>
             </p>
         </div>
     </div>
 
-    <button ng-click="reset();" class="btn btn-primary btn-large">New Game</button>
+    <div class="overlay" ng-show="showWin">
+
+       <h1 ng-class="'color-' + winningPlayer">Player {{winningPlayer}} Wins!</h1>
+    <button class="position" ng-click="reset();" class="btn btn-primary btn-large">New Game</button>
+
+   </div>
+
+   <div class="overlay" ng-show="showTye">
+
+       <h1>Game Tied!</h1>
+    <button class="position" ng-click="reset();" class="btn btn-primary btn-large">New Game</button>
+
+   </div>
+
+
 </body>
 
 </html>
