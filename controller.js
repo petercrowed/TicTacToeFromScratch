@@ -10,12 +10,14 @@ myApp.controller('controller', function($scope, $timeout)  {
     [ { value: '-' }, { value: '-' }, { value: '-' } ]
   ];
 
-
+  var round = 0;
 
  $scope.winningPlayer = 0;
   $scope.reset = function() {
 
+
   $scope.change();
+  round = 0;
     $scope.currentPlayer = 'X';
     $scope.winner = false;
     $scope.cat = false;
@@ -92,7 +94,10 @@ myApp.controller('controller', function($scope, $timeout)  {
                   $scope.showWin = true;
                 //  $scope.showTye = true;
               }
-
+              if(round ==8 && $scope.showWin == false)
+              {
+                $scope.showTye = true;
+              }
       return $scope.winner || $scope.cat;
   };
 
@@ -100,7 +105,8 @@ myApp.controller('controller', function($scope, $timeout)  {
   cell.value = $scope.currentPlayer;
   if (checkForEndOfGame() === false) {
       $scope.currentPlayer = $scope.currentPlayer === 'X' ? 'O' : 'X';
-
+      $scope.round = round++;
+      console.log($scope.round);
   }
   };
 
